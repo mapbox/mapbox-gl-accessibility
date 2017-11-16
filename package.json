@@ -1,0 +1,40 @@
+{
+  "name": "@mapbox/mapbox-gl-accessibility",
+  "version": "0.0.0",
+  "description": "An accessibility control for Mapbox GL JS",
+  "main": "index.js",
+  "scripts": {
+    "start": "budo example/index.js --serve=example/bundle.js --live",
+    "build": "browserify example/index.js > example/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mapbox/mapbox-gl-accessibility.git"
+  },
+  "author": "Mapbox",
+  "license": "ISC",
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^8.0.0",
+    "budo": "^10.0.4",
+    "mapbox-gl": "^0.42.0"
+  },
+  "dependencies": {
+    "xtend": "^4.0.1"
+  }
+}
