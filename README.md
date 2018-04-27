@@ -3,6 +3,12 @@ Mapbox GL Accessibility Plugin
 
 An accessibility control for [mapbox-gl-js](https://github.com/mapbox/mapbox-gl-js).
 
+__Note:__ This is experimental and welcomes contributions. See [issues](https://github.com/mapbox/mapbox-gl-accessibility/issues) to learn what needs to be worked on!
+
+### Demo
+
+https://mapbox.com/mapbox-gl-accessibility/ Enable voice-over and try pressing tab to see the result.
+
 ### Usage
 
 ```js
@@ -30,3 +36,9 @@ map.on('load', () => {
   }));
 });
 ```
+
+### Developing
+
+    npm install & npm start
+
+Visit http://localhost:9966/example/ to load the demo
