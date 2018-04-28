@@ -1,0 +1,12 @@
+{
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "indent": ["error", 2],
+    "no-console": "warn"
+  },
+  "parser": "babel-eslint"
+}
