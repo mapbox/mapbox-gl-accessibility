@@ -1,6 +1,7 @@
 'use strict';
 
 import xtend from 'xtend';
+import bbox from '@turf/bbox';
 
 export default class MapboxAccessibility {
   constructor(options) {
@@ -34,8 +35,7 @@ export default class MapboxAccessibility {
   queryFeatures = () => {
     this.features = this.map.queryRenderedFeatures({ layers: this.options.layers });
     this.features.map((feature) => {
-      const { width, height } = this.options;
-      const position = this.map.project(feature.geometry.coordinates);
+      let { width, height } = this.options;
       const label = feature.properties[this.options.accessibleLabelProperty];
 
       feature.marker = document.createElement('button');
@@ -43,6 +43,23 @@ export default class MapboxAccessibility {
       feature.marker.setAttribute('title', label);
       feature.marker.setAttribute('tabindex', 0);
       feature.marker.style.display = 'block';
+
+      let position;
+      if (feature.geometry.type === 'Point') {
+        position = this.map.project(feature.geometry.coordinates);
+      } else {
+        const featureBbox = bbox(feature);
+        const bl = this.map.project([featureBbox[0], featureBbox[1]]);
+        const tr = this.map.project([featureBbox[2], featureBbox[3]]);
+
+        width = Math.abs(tr.x - bl.x);
+        height = Math.abs(tr.y - bl.y);
+
+        position = {
+          x: ((tr.x + bl.x) / 2),
+          y: ((tr.y + bl.y) / 2),
+        };
+      }
       feature.marker.style.width = `${width}px`;
       feature.marker.style.height = `${height}px`;
       feature.marker.style.transform = `translate(-50%, -50%) translate(${position.x}px, ${position.y}px)`;
