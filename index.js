@@ -33,7 +33,7 @@ export default class MapboxAccessibility {
 
   queryFeatures = () => {
     this.features = this.map.queryRenderedFeatures({ layers: this.options.layers });
-    this.features.map((feature, index) => {
+    this.features.map((feature) => {
       const { width, height } = this.options;
       const position = this.map.project(feature.geometry.coordinates);
       const label = feature.properties[this.options.accessibleLabelProperty];
@@ -41,7 +41,7 @@ export default class MapboxAccessibility {
       feature.marker = document.createElement('button');
       feature.marker.setAttribute('aria-label', label);
       feature.marker.setAttribute('title', label);
-      feature.marker.setAttribute('tabindex', index);
+      feature.marker.setAttribute('tabindex', 0);
       feature.marker.style.display = 'block';
       feature.marker.style.width = `${width}px`;
       feature.marker.style.height = `${height}px`;
