@@ -80,7 +80,7 @@ export default class MapboxAccessibility {
   };
 
   _render = () => {
-    if (this.map.areTilesLoaded() && this.map.loaded() && !this.map.isMoving()) {
+    if (!this.map.isMoving()) {
       this._debouncedQueryFeatures();
     }
   };
