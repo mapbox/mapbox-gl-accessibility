@@ -6,7 +6,7 @@
   "scripts": {
     "start": "budo example/index.js --serve=example/bundle.js --live",
     "build": "browserify example/index.js > example/bundle.js",
-    "lint": "eslint index.js"
+    "test": "eslint index.js"
   },
   "repository": {
     "type": "git",
