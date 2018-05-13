@@ -2,6 +2,7 @@
 
 import xtend from 'xtend';
 import bbox from '@turf/bbox';
+import debounce from 'lodash/debounce';
 
 export default class MapboxAccessibility {
   constructor(options) {
@@ -33,6 +34,9 @@ export default class MapboxAccessibility {
   };
 
   queryFeatures = () => {
+    this._debouncedQueryFeatures.cancel();
+    this.clearMarkers();
+
     this.features = this.map.queryRenderedFeatures({ layers: this.options.layers });
     this.features.map((feature) => {
       let { width, height } = this.options;
@@ -70,19 +74,36 @@ export default class MapboxAccessibility {
     });
   };
 
+  _movestart = () => {
+    this._debouncedQueryFeatures.cancel();
+    this.clearMarkers();
+  };
+
+  _render = () => {
+    if (!this.map.isMoving()) {
+      this._debouncedQueryFeatures();
+    }
+  };
+
   onAdd(map) {
     this.map = map;
-    this.queryFeatures();
-    this.map.on('moveend', this.queryFeatures);
-    this.map.on('movestart', this.clearMarkers);
+
+    this._debouncedQueryFeatures = debounce(this.queryFeatures, 100);
+
+    this.map.on('movestart', this._movestart);
+    this.map.on('moveend', this._render);
+    this.map.on('render', this._render);
+
     this.container = document.createElement('div');
     return this.container;
   }
 
   onRemove() {
     this.container.parentNode.removeChild(this.container);
-    this.map.off('moveend', this.queryFeatures);
-    this.map.off('movestart', this.clearMarkers);
+    this.map.off('movestart', this._movestart);
+    this.map.off('moveend', this._render);
+    this.map.off('render', this._render);
+    this._debouncedQueryFeatures.cancel();
     delete this.map;
   }
 }
