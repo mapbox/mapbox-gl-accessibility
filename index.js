@@ -2,6 +2,7 @@
 
 import xtend from 'xtend';
 import bbox from '@turf/bbox';
+import distance from '@turf/distance';
 import debounce from 'lodash/debounce';
 
 export default class MapboxAccessibility {
@@ -42,6 +43,13 @@ export default class MapboxAccessibility {
       let { width, height } = this.options;
       const label = feature.properties[this.options.accessibleLabelProperty];
 
+      if(this.geolocatePosition) {
+        feature.distance = distance(feature, [
+          this.geolocatePosition.lng,
+          this.geolocatePosition.lat,
+        ])
+      }
+
       feature.marker = document.createElement('button');
       feature.marker.setAttribute('aria-label', label);
       feature.marker.setAttribute('title', label);
@@ -68,10 +76,18 @@ export default class MapboxAccessibility {
       feature.marker.style.height = `${height}px`;
       feature.marker.style.transform = `translate(-50%, -50%) translate(${position.x}px, ${position.y}px)`;
       feature.marker.className = 'mapboxgl-accessibility-marker';
-
-      this.map.getCanvasContainer().appendChild(feature.marker);
       return feature;
     });
+
+    if(this.geolocatePosition) {
+      this.features = this.features.sort((a, b) => {
+        return (a.distance - b.distance);
+      });
+    }
+
+    this.features.forEach((feature) => {
+      this.map.getCanvasContainer().appendChild(feature.marker);
+    })
   };
 
   _movestart = () => {
@@ -85,6 +101,13 @@ export default class MapboxAccessibility {
     }
   };
 
+  _geolocate = (event) => {
+    // A hack because we can't query the geolocate control directly.
+    if(event.geolocateSource) {
+      this.geolocatePosition = this.map.getCenter();
+    }
+  }
+
   onAdd(map) {
     this.map = map;
 
@@ -93,6 +116,7 @@ export default class MapboxAccessibility {
     this.map.on('movestart', this._movestart);
     this.map.on('moveend', this._render);
     this.map.on('render', this._render);
+    this.map.on('movestart', this._geolocate);
 
     this.container = document.createElement('div');
     return this.container;

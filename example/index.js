@@ -18,6 +18,13 @@ const map = new mapboxgl.Map({
 });
 
 map.on('load', () => {
+  map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true
+    },
+    trackUserLocation: true
+  }));
+
   map.addControl(new MapboxAccessibility({
     accessibleLabelProperty: 'name',
     layers: [
