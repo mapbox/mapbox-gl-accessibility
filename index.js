@@ -43,7 +43,7 @@ export default class MapboxAccessibility {
       let { width, height } = this.options;
       const label = feature.properties[this.options.accessibleLabelProperty];
 
-      if(this.geolocatePosition) {
+      if (this.geolocatePosition) {
         feature.distance = distance(feature, [
           this.geolocatePosition.lng,
           this.geolocatePosition.lat,
