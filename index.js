@@ -79,7 +79,7 @@ export default class MapboxAccessibility {
       return feature;
     });
 
-    if(this.geolocatePosition) {
+    if (this.geolocatePosition) {
       this.features = this.features.sort((a, b) => {
         return (a.distance - b.distance);
       });
@@ -103,7 +103,7 @@ export default class MapboxAccessibility {
 
   _geolocate = (event) => {
     // A hack because we can't query the geolocate control directly.
-    if(event.geolocateSource) {
+    if (event.geolocateSource) {
       this.geolocatePosition = this.map.getCenter();
     }
   }
