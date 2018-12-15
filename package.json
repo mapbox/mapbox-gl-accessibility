@@ -39,9 +39,7 @@
   },
   "dependencies": {
     "@turf/bbox": "^6.0.1",
-    "cached-path-relative": "^1.0.2",
     "lodash": "^4.17.10",
-    "randomatic": "^3.1.1",
     "xtend": "^4.0.1"
   }
 }
