@@ -1,5 +1,10 @@
 import mapboxgl from 'mapbox-gl'
 import MapboxAccessibility from '../'
+import insertCss from 'insert-css'
+var fs = require('fs');
+
+insertCss(fs.readFileSync('example/example.css', 'utf8'));
+insertCss(fs.readFileSync('./node_modules/mapbox-gl/dist/mapbox-gl.css', 'utf8'));
 
 mapboxgl.accessToken = 'pk.eyJ1IjoidHJpc3RlbiIsImEiOiJjajZoOXU4Z2kwNnppMnlxd2d6bTFvZ2xtIn0.PP7AoUakMfeqdXFHdsY0oA';
 
