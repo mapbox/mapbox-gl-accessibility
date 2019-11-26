@@ -9,7 +9,7 @@ __Note:__ This is a work in progress and we welcome contributions. See [issues](
 
 1. Go to https://labs.mapbox.com/mapbox-gl-accessibility 
 2. Enable voice-over in your browser
-3. Press tab to hearthe result
+3. Press tab to hear the result
 
 ### Usage
 
