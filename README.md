@@ -3,11 +3,13 @@ Mapbox GL Accessibility Plugin
 
 An accessibility control for [mapbox-gl-js](https://github.com/mapbox/mapbox-gl-js).
 
-__Note:__ This is experimental and welcomes contributions. See [issues](https://github.com/mapbox/mapbox-gl-accessibility/issues) to learn what needs to be worked on!
+__Note:__ This is a work in progress and we welcome contributions. See [issues](https://github.com/mapbox/mapbox-gl-accessibility/issues) to learn what needs to be worked on!
 
 ### Demo
 
-https://labs.mapbox.com/mapbox-gl-accessibility Enable voice-over and try pressing tab to see the result.
+1. Go to https://labs.mapbox.com/mapbox-gl-accessibility 
+2. Enable voice-over in your browser
+3. Press tab to hearthe result
 
 ### Usage
 
