@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "budo example/index.js --serve=example/bundle.js --live",
-    "build": "browserify example/index.js > example/bundle.js",
+    "build": "browserify example/index.js > example/bundle.js && rm -rf _site && mkdir -p _site && cp example/index.html _site/index.html && cp example/bundle.js _site/bundle.js",
     "test": "eslint index.js"
   },
   "repository": {
