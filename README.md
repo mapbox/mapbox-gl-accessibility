@@ -7,7 +7,7 @@ __Note:__ This is experimental and welcomes contributions. See [issues](https://
 
 ### Demo
 
-https://mapbox.com/mapbox-gl-accessibility/ Enable voice-over and try pressing tab to see the result.
+https://labs.mapbox.com/mapbox-gl-accessibility Enable voice-over and try pressing tab to see the result.
 
 ### Usage
 
