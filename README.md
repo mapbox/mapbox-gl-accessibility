@@ -7,6 +7,8 @@ __Note:__ This is a work in progress and we welcome contributions. See [issues](
 
 ### Demo
 
+<a href="https://vimeo.com/375772633/22ce0b9ed1" target="_blank"><img src="https://user-images.githubusercontent.com/6026447/69743104-b8655480-10f2-11ea-8621-f59e8e4f41ef.png" width=300></a>
+
 1. Go to https://labs.mapbox.com/mapbox-gl-accessibility 
 2. Enable voice-over in your browser
 3. Press tab to hear the result
