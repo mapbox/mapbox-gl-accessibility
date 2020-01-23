@@ -1,6 +1,6 @@
 {
   "name": "@mapbox/mapbox-gl-accessibility",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "An accessibility control for Mapbox GL JS",
   "main": "index.js",
   "scripts": {
