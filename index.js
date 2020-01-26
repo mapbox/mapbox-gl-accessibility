@@ -20,14 +20,9 @@ export default class MapboxAccessibility {
     }
 
     this.options = xtend(defaultOptions, options);
-
-    this.clearMarkers = this.clearMarkers.bind(this);
-    this.queryFeatures = this.queryFeatures.bind(this);
-    this._movestart = this._movestart.bind(this);
-    this._render = this._render.bind(this);
   }
 
-  clearMarkers() {
+  clearMarkers = () => {
     if (this.features) {
       this.features.forEach(feature => {
         if (feature.marker) {
@@ -36,9 +31,9 @@ export default class MapboxAccessibility {
         }
       });
     }
-  };
+  }
 
-  queryFeatures() {
+  queryFeatures = () => {
     this._debouncedQueryFeatures.cancel();
     this.clearMarkers();
 
@@ -77,18 +72,18 @@ export default class MapboxAccessibility {
       this.map.getCanvasContainer().appendChild(feature.marker);
       return feature;
     });
-  };
+  }
 
-  _movestart() {
+  _movestart = () => {
     this._debouncedQueryFeatures.cancel();
     this.clearMarkers();
-  };
+  }
 
-  _render() {
+  _render = () => {
     if (!this.map.isMoving()) {
       this._debouncedQueryFeatures();
     }
-  };
+  }
 
   onAdd(map) {
     this.map = map;
