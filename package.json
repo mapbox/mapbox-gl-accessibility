@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "budo example/index.js --serve=example/bundle.js --live",
-    "build": "browserify example/index.js > example/bundle.js && rm -rf _site && mkdir -p _site && cp -R example/ _site/",
+    "build": "rollup -c",
     "test": "eslint index.js"
   },
   "repository": {
@@ -30,15 +30,19 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
-    "babel-eslint": "^10.0.3",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "babel-eslint": "^10.0.3",
     "babelify": "^10.0.0",
     "brfs": "^2.0.2",
     "budo": "^11.6.2",
     "eslint": "^4.19.1",
     "insert-css": "^2.0.0",
-    "mapbox-gl": "^0.44.2"
+    "mapbox-gl": "^0.44.2",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup": "^1.29.1"
   },
   "dependencies": {
     "@turf/bbox": "^6.0.1",
