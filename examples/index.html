@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link href='example.css' rel='stylesheet'>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+  <script src='../dist/mapbox-gl-accessibility.js'></script>
+  <script src='get-token.js'></script>
+</head>
+<body>
+  <div id='map' class='map'></div>
+  <script>
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-79.387, 43.656],
+      zoom: 13.5
+    });
+
+    map.on('load', () => {
+      map.addControl(new MapboxAccessibility({
+        accessibleLabelProperty: 'name',
+        layers: [
+          'poi-label',
+          'transit-label'
+        ]
+      }));
+    });
+  </script>
+</body>
+</html>

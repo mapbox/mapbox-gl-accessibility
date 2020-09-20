@@ -4,6 +4,10 @@ body {
   overflow: hidden;
 }
 
+.map.map {
+  position: absolute; top: 0; bottom: 0; width: 100%;
+}
+
 .mapboxgl-accessibility-marker {
   background: transparent;
   margin: 0;

@@ -1,8 +1,18 @@
 language: node_js
-node_js:
-  - 6
+
+node_js: 10
+
+os: osx
+
 cache:
   directories:
     - node_modules
+
+addons:
+  chrome: beta
+
 before_install:
-  - npm i -g npm@5.7.1
+  - "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --headless --disable-gpu --remote-debugging-port=9222 http://localhost &"
+  ⋮
+
+install: npm ci
