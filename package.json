@@ -11,6 +11,9 @@
     "lint": "eslint index.js",
     "test": "npm run lint && browserify test/test.js | smokestack | tap-spec"
   },
+  "files": [
+    "/src"
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/mapbox/mapbox-gl-accessibility.git"
