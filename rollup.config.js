@@ -4,13 +4,19 @@ import commonjs from '@rollup/plugin-commonjs';
 
 export default {
   input: ['src/index.js'],
-  output: {
+  output: [{
     name: 'MapboxAccessibility',
     file: 'dist/mapbox-gl-accessibility.js',
     format: 'umd',
     sourcemap: true,
     indent: false,
-  },
+  }, {
+    name: 'MapboxAccessibility',
+    file: 'examples/mapbox-gl-accessibility.js',
+    format: 'umd',
+    sourcemap: true,
+    indent: false,
+  }],
   treeshake: true,
   plugins: [
     // rollup requires a babel passthrough to transpile special

@@ -6,9 +6,9 @@
   "scripts": {
     "start:server": "serve",
     "start": "run-p start:server watch",
-    "watch": "watch 'npm run start:build' src",
-    "start:build": "rollup -c && cp dist/mapbox-gl-accessibility.js examples/mapbox-gl-accessibility.js",
-    "build": "rollup -c && rm -rf _site && mkdir -p _site && cp -R examples/ _site/ && cp dist/mapbox-gl-accessibility.js _site/mapbox-gl-accessibility.js",
+    "watch": "watch 'npm run compile' src",
+    "compile": "rollup -c",
+    "build": "npm run compile && rm -rf _site && mkdir -p _site && cp -R examples/ _site/",
     "lint": "eslint index.js",
     "test": "npm run lint && browserify test/test.js | smokestack | tap-spec"
   },
