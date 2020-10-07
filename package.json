@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start:server": "serve",
-    "start": "run-p build start:server watch",
-    "watch": "watch 'npm run build' src",
-    "build": "rollup -c",
+    "start": "run-p start:server watch",
+    "watch": "watch 'npm run start:build' src",
+    "start:build": "rollup -c && cp dist/mapbox-gl-accessibility.js examples/mapbox-gl-accessibility.js",
+    "build": "rollup -c && rm -rf _site && mkdir -p _site && cp -R examples/ _site/ && cp dist/mapbox-gl-accessibility.js _site/mapbox-gl-accessibility.js",
     "lint": "eslint index.js",
     "test": "npm run lint && browserify test/test.js | smokestack | tap-spec"
   },
