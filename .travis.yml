@@ -9,7 +9,7 @@ cache:
     - node_modules
 
 before_install:
-  - echo $MAPBOX_ACCESS_TOKEN | cut -f 2 -d . | base64 -D
+  - echo $MAPBOX_ACCESS_TOKEN | cut -f 2 -d . | base64 --decode
 
 install: npm ci
 
