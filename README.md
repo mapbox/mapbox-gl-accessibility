@@ -56,9 +56,11 @@ map.on('load', () => {
 }
 ```
 
+You can control the tab order of features in each layer by setting `tabindex` as the feature property.
+
 ### Developing
 
-    npm install & npm start
+    npm install && npm start
 
 Visit http://localhost:5000/examples/ to load the demo. You also need to store an access token in localstorage. Open developer tools, locate the console tab and insert:
 

@@ -4,6 +4,7 @@ const test = require('tape');
 window.mapboxgl = require('mapbox-gl');
 window.MapboxAccessibility = require('../src/index').default;
 const polygon = require('./fixtures/polygon');
+const polygonWithTabIndex = require('./fixtures/polygon-with-tabindex');
 
 mapboxgl.accessToken = process.env.MAPBOX_ACCESS_TOKEN;
 
@@ -91,6 +92,41 @@ test('MapboxAccessibility: polygon', t => {
       t.equals(marker.style.getPropertyValue('width'), '375.062px', 'Custom width for bounds');
       t.equals(marker.style.getPropertyValue('height'), '438.625px', 'Custome height for bounds');
 
+      t.end();
+    }, 1000);
+  });
+});
+
+test('MapboxAccessibility: polygon with tabindex', t => {
+  const map = createMap({
+    center: [-69.217, 45.171],
+    zoom: 6
+  });
+
+  document.body.appendChild(map.getCanvasContainer());
+
+  map.on('load', () => {
+    map.addSource('data', {
+      'type': 'geojson',
+      'data': polygonWithTabIndex
+    });
+
+    map.addLayer({
+      id: 'polygon',
+      type: 'fill',
+      source: 'data'
+    });
+
+    map.addControl(new MapboxAccessibility({
+      accessibleLabelProperty: 'title',
+      layers: [
+        'polygon'
+      ]
+    }));
+
+    window.setTimeout(() => {
+      const marker = map.getCanvasContainer().querySelector('.mapboxgl-accessibility-marker');
+      t.equals(marker.getAttribute('tabindex'), "2", 'tabindex is set to 2');
       t.end();
     }, 1000);
   });
