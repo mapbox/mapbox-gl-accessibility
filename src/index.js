@@ -45,7 +45,7 @@ export default class MapboxAccessibility {
       feature.marker = document.createElement('button');
       feature.marker.setAttribute('aria-label', label);
       feature.marker.setAttribute('title', label);
-      feature.marker.setAttribute('tabindex', 0);
+      feature.marker.setAttribute('tabindex', feature.properties.tabindex || 0);
       feature.marker.style.display = 'block';
 
       let position;
